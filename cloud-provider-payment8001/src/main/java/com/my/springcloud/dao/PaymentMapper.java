@@ -11,16 +11,16 @@ import java.util.List;
  * @Description
  */
 @Mapper
-public interface paymentMapper {
+public interface PaymentMapper {
 
     int add(Payment payment);
 
-    int del(Long id);
+    int delete(Long id);
 
     int update(Payment payment);
 
-    List<Payment> select();
+    List<Payment> findList();
 
-    Payment selectById(Long id);
+    Payment findById(Long id);
 
 }
