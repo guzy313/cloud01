@@ -4,20 +4,20 @@
 <mapper namespace="com.my.springcloud.dao.PaymentMapper">
 
     <!-- useGeneratedKeys 返回值 此处为影响行数 -->
-    <insert id="add" parameterType="Payment" useGeneratedKeys="true" keyProperty="id">
+    <insert id="add" parameterType="com.my.springcloud.entity.Payment" useGeneratedKeys="true" keyProperty="id">
         insert into payment (serial) values (#{serial})
     </insert>
 
-    <select id="findList" resultType="Payment">
+    <select id="findList" resultType="com.my.springcloud.entity.Payment">
         select * from payment
     </select>
 
     <resultMap id="BaseResultMap" type="com.my.springcloud.entity.Payment">
         <!-- column对应表字段 property 对应java类的属性 -->
-        <id column="id" property="id" jdbcType="bigint"></id>
-        <result column="serial" property="serial" jdbcType="varchar"></result>
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <result column="serial" property="serial" jdbcType="VARCHAR"></result>
     </resultMap>
-    <select id="findById" parameterType="Long"  resultMap="BaseResultMap">
+    <select id="findById" parameterType="long"  resultMap="BaseResultMap">
         select * from payment where id = #{id}
     </select>
 
@@ -29,6 +29,6 @@
         update payment set serial = #{serial}
     </update>
 
-    
+
     
 </mapper>

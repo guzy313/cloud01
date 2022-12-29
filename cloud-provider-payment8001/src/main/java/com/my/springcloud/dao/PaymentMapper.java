@@ -2,6 +2,7 @@ package com.my.springcloud.dao;
 
 import com.my.springcloud.entity.Payment;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @Description
  */
 @Mapper
+@Component
 public interface PaymentMapper {
 
     int add(Payment payment);
