@@ -6,10 +6,7 @@ import com.my.springcloud.service.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,6 +42,16 @@ public class PaymentController {
         return new CommonResult(500,"没有对应记录");
     }
 
+
+    @GetMapping(value = "/payment/findById/{id}")
+    public CommonResult findById(@PathVariable("id") long id){
+        Payment payment = paymentService.findById(id);
+        System.out.println(123);
+        if(payment != null){
+            return new CommonResult(200,"查询成功",payment);
+        }
+        return new CommonResult(500,"没有对应记录");
+    }
 
 
     @PostMapping(value = "/payment/delete")
