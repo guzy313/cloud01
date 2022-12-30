@@ -23,7 +23,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping(value = "/payment/add")
-    public CommonResult add(Payment payment){
+    public CommonResult add(@RequestBody Payment payment){
         int result = paymentService.add(payment);
         log.info("***新增结果:" + result);
         if(result > 0){
@@ -55,7 +55,7 @@ public class PaymentController {
 
 
     @PostMapping(value = "/payment/delete")
-    public CommonResult delete(Payment payment){
+    public CommonResult delete(@RequestBody Payment payment){
         int result = paymentService.delete(payment.getId());
         log.info("***删除结果:" + result);
         if(result > 0){
