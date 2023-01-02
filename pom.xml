@@ -11,6 +11,7 @@
         <module>cloud-provider-payment8001</module>
       <module>cloud-consumer-order80</module>
         <module>cloud-api-commons</module>
+      <module>cloud-eureka-server7001</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -33,6 +34,7 @@
     <spring.boot.tomcat.version>2.2.2.RELEASE</spring.boot.tomcat.version>
     <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
     <spring.cloud.alibaba>2.1.0.RELEASE</spring.cloud.alibaba>
+    <eureka.version>2.2.10.RELEASE</eureka.version>
   </properties>
 
   <!-- dependencyManagement 只是声明依赖,并不实现引入 -->
