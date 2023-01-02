@@ -8,7 +8,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/db01?useUnicode=true&character=UTF-8&serverTimezone=UTC&useSSL=false
+      url: jdbc:mysql://192.168.50.83:3306/db01?useUnicode=true&character=UTF-8&serverTimezone=UTC&useSSL=false
       username: root
       password: syq
 mybatis:
