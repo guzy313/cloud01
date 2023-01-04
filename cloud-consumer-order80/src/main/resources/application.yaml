@@ -23,3 +23,8 @@ eureka:
     fetchRegistry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    #设置微服务 在注册中心的名称
+    instance-id: order80
+    #展示微服务的ip地址
+    prefer-ip-address: true

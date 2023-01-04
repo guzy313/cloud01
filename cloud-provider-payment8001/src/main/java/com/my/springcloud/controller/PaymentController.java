@@ -6,6 +6,7 @@ import com.my.springcloud.service.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,9 @@ public class PaymentController {
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
     @Autowired
     private PaymentService paymentService;
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @PostMapping(value = "/payment/add")
     public CommonResult add(@RequestBody Payment payment){
@@ -62,6 +66,13 @@ public class PaymentController {
             return new CommonResult(200,"删除成功",result);
         }
         return new CommonResult(500,"删除失败");
+    }
+
+
+    @GetMapping(value = "/payment/discovery")
+    public Object discovery(){
+        List<String> services = discoveryClient.getServices();
+        return services;
     }
 
 
