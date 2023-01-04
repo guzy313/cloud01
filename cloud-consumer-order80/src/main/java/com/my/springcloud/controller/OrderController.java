@@ -16,7 +16,10 @@ import sun.dc.pr.PRError;
  */
 @RestController
 public class OrderController {
-    public static final String PAYMENT_URL = "http://localhost:8001/";
+
+    //此处声明需要调用的微服务名称(多个功能一致的微服务负载均衡名称保持一致)
+    public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
+//    public static final String PAYMENT_URL = "http://localhost:8001/";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -31,6 +34,11 @@ public class OrderController {
     @GetMapping("/consumer/payment/findById/{id}")
     public CommonResult<Payment> findById(@PathVariable("id")long id){
         return restTemplate.getForObject(PAYMENT_URL + "/payment/findById/"+id,CommonResult.class);
+    }
+
+    @GetMapping("/consumer/payment/findAll")
+    public CommonResult<Payment> findAll(){
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/findAll",CommonResult.class);
     }
 
 }
