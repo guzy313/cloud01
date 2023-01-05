@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,8 +76,18 @@ public class PaymentController {
 
     @GetMapping(value = "/payment/discovery")
     public Object discovery(){
+        //获取所有的微服务名称
         List<String> services = discoveryClient.getServices();
-        return services;
+        for (String s:services ) {
+            log.info("=== element:" + s);
+        }
+        //通过微服务名称获取(可以获取到所有相同名称的微服务实例信息)
+        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
+        for (ServiceInstance instance:instances) {
+            log.info(instance.getServiceId() + "\n" + instance.getHost() + "\n" + instance.getPort() + "\n" + instance.getUri());
+        }
+
+        return this.discoveryClient;
     }
 
 
