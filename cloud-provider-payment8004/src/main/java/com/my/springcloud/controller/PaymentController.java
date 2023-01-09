@@ -17,7 +17,7 @@ import java.util.UUID;
 public class PaymentController {
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
 
-    @Value("{server.port}")
+    @Value("${server.port}")
     private String serverPort;
 
     @GetMapping(value = "payment/zk")

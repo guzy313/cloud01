@@ -15,4 +15,4 @@ spring:
     type-aliases-package: com.my.springcloud.entity
   cloud:
     zookeeper:
-      connect-string: localhost:2181
+      connect-string: 192.168.50.145:2181
