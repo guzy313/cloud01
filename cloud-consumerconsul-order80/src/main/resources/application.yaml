@@ -1,8 +1,9 @@
 server:
-  port: 8006
+  port: 80
 spring:
   application:
-    name: cloud-provider-payment
+    #服务名称
+    name: cloud-order-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -10,15 +11,14 @@ spring:
       url: jdbc:mysql://localhost:3306/db01?useUnicode=true&character=UTF-8&serverTimezone=UTC&useSSL=false
       username: root
       password: syq
-  mybatis:
-    mapper-locations: classpath:mapper/*.xml
-    type-aliases-package: com.my.springcloud.entity
   cloud:
     consul:
       discovery:
         #注册在consul注册中心的本服务名称
         #(下面直接用el取服务名称可能会取不到导致报错,可以直接复制服务名称)
-        #service-name: ${spring.application.name}
-        service-name: cloud-provider-payment
+        service-name: ${spring.application.name}
       host: localhost
       port: 8500
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.my.springcloud.entity
