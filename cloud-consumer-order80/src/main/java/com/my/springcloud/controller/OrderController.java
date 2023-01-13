@@ -3,6 +3,7 @@ package com.my.springcloud.controller;
 import com.my.springcloud.entity.CommonResult;
 import com.my.springcloud.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,4 +42,16 @@ public class OrderController {
         return restTemplate.getForObject(PAYMENT_URL + "/payment/findAll",CommonResult.class);
     }
 
+    //Ribbon 学习
+    @GetMapping(value = "/consumer/payment/findAllWithRibbon")
+    public CommonResult<Payment> findAllWithRibbon(){
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "/payment/findAll", CommonResult.class);
+        if(entity.getStatusCode().is2xxSuccessful()){
+            return entity.getBody();
+        }else{
+            return new CommonResult<>(500,"error");
+        }
+    }
+
 }
+
