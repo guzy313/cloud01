@@ -28,3 +28,14 @@ eureka:
     instance-id: order-feign80
     #展示微服务的ip地址
     prefer-ip-address: true
+ribbon:
+  #建立连接的等待时间 单位：ms
+  ReadTimeout: 5000
+  #(建立连接后)从服务器读取到可用资源的时间
+  ConnectTimeout: 5000
+
+#此处为feign的日志配置
+logging:
+  level:
+    # feign日志以什么级别监控哪个接口 (级别在配置类中配置)
+    com.my.springcloud.service.PaymentFeignService: debug

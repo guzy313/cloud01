@@ -30,4 +30,9 @@ public class OrderController {
         return paymentFeignService.findById(id);
     }
 
+    @GetMapping("/payment/paymentFeignTimeout")
+    public String paymentFeignTimeout(){
+        return paymentFeignService.paymentFeignTimeout();
+    }
+
 }
