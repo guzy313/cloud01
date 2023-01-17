@@ -14,11 +14,11 @@ eureka:
     fetch-registry: false
     service-url:
       #设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
-      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       #此处为集群配置，与其他的注册中心相互注册 (所以此处不能是自己)
-      defaultZone: http://eureka7002.com:7002
+      #defaultZone: http://eureka7002.com:7002
   server:
     #设置为false则是关闭自我保护模式，无法检测到注册的微服务心跳则立刻注销该微服务(不设置默认为true)
     enable-self-preservation: true
-    #检测心跳时间设置为200秒
-    eviction-interval-timer-in-ms: 2000
+    #检测心跳时间设置为60秒
+    eviction-interval-timer-in-ms: 60000
