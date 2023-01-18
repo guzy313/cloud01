@@ -1,6 +1,8 @@
 package com.my.springcloud.controller;
 
 import com.my.springcloud.service.OrderService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +39,20 @@ public class OrderController {
      * 超时模拟
      * @return
      */
+    @HystrixCommand(fallbackMethod = "timeoutHandler", commandProperties = {
+        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+    }
+    )
     @GetMapping(value = "hystrix/payment/paymentInfo_Timeout/{id}")
     public String paymentInfo_Timeout(@PathVariable("id") Integer id){
         return "服务端口：" + serverPort + orderService.paymentInfo_Timeout(id);
+    }
+
+    /**
+     * 备用方法
+     */
+    public String timeoutHandler(Integer id){
+        return "(order模块)服务器繁忙,请稍后再试 " + id;
     }
 
 }
