@@ -39,3 +39,7 @@ logging:
   level:
     # feign日志以什么级别监控哪个接口 (级别在配置类中配置)
     com.my.springcloud.service.PaymentFeignService: debug
+#开启feign 对 hystrix熔断器 的支持
+feign:
+  hystrix:
+    enabled: true

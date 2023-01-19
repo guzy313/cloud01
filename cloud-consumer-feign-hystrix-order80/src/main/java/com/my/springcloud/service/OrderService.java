@@ -1,5 +1,6 @@
 package com.my.springcloud.service;
 
+import com.my.springcloud.service.impl.OrderServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Description
  * @date create on 2023/1/17
  */
-@FeignClient("CLOUD-PAYMENT-HYSTRIX-SERVICE")
+@FeignClient(value = "CLOUD-PAYMENT-HYSTRIX-SERVICE",fallback = OrderServiceFallback.class)
 public interface OrderService {
 
     /**

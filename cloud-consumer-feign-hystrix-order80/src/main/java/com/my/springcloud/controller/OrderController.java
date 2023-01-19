@@ -1,6 +1,7 @@
 package com.my.springcloud.controller;
 
 import com.my.springcloud.service.OrderService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date create on 2023/1/17
  */
 @RestController
+//没有配置过指定的 备用方法 的就用默认的这个方法
+@DefaultProperties(defaultFallback = "defaultHandler")
 public class OrderController {
 
     @Autowired
@@ -31,6 +34,7 @@ public class OrderController {
      * @return
      */
     @GetMapping(value = "/hystrix/payment/paymentInfo_OK/{id}")
+//    @HystrixCommand
     public String paymentInfo_OK(@PathVariable("id") Integer id){
         return "服务端口：" + serverPort + orderService.paymentInfo_OK(id);
     }
@@ -54,5 +58,15 @@ public class OrderController {
     public String timeoutHandler(Integer id){
         return "(order模块)服务器繁忙,请稍后再试 " + id;
     }
+
+    /**
+     * 默认方法
+     * @param
+     * @return
+     */
+    public String defaultHandler(){
+        return "(order模块-默认通用方法)服务器繁忙,请稍后再试 ";
+    }
+
 
 }
