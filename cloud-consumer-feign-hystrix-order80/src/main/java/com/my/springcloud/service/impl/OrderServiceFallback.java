@@ -22,4 +22,9 @@ public class OrderServiceFallback implements OrderService {
     public String paymentInfo_Timeout(Integer id) {
         return "单独备用方法:" + id;
     }
+
+    @Override
+    public String paymentCircuitBreaker(Integer id) {
+        return "单独备用方法:" + id;
+    }
 }

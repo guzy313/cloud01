@@ -29,5 +29,12 @@ public interface OrderService {
     @GetMapping(value = "hystrix/payment/paymentInfo_Timeout/{id}")
     public String paymentInfo_Timeout(@PathVariable("id") Integer id);
 
+    /**
+     * 熔断模拟
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "hystrix/payment/paymentCircuitBreaker/{id}")
+    public String paymentCircuitBreaker(@PathVariable Integer id);
 
 }

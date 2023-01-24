@@ -69,4 +69,10 @@ public class OrderController {
     }
 
 
+    @GetMapping(value = "hystrix/payment/paymentCircuitBreaker/{id}")
+    public String paymentCircuitBreaker(@PathVariable Integer id){
+        return "服务端口：" + serverPort + orderService.paymentCircuitBreaker(id);
+    }
+
+
 }
