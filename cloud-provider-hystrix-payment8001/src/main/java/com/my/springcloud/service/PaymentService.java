@@ -49,6 +49,7 @@ public class PaymentService {
 
     @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback",commandProperties =
             {
+                    //需要同时满足以下条件(开启断路器,请求次数达到设定值,在一定时间段内,失败率百分比达到设定值)
                     @HystrixProperty(name="circuitBreaker.enabled",value="true"),//是否开启断路器
                     @HystrixProperty(name="circuitBreaker.requestVolumeThreshold",value="10"),//(触发断路器的)请求次数
                     @HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds",value="10000"),//(断路器跳闸之后多久会尝试重启)时间范围

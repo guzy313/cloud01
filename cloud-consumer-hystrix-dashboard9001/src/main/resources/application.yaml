@@ -1,0 +1,17 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    #服务名称
+    name: cloud-consumer-hystrix-dashboard9001
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/db01?useUnicode=true&character=UTF-8&serverTimezone=UTC&useSSL=false
+      username: root
+      password: syq
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.my.springcloud.entity
