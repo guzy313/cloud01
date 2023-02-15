@@ -13,14 +13,23 @@ spring:
       routes:
         - id: payment_route #路由的ID，没有固定的规则但要求唯一，建议配合服务名称
           #uri: http://localhost:8001 #匹配后提供服务的路由地址
-          uri: lb://cloud-payment-service #匹配后提供服务的路由地址(开启从注册中心动态创建路由之后)
+          #匹配后提供服务的路由地址(开启从注册中心动态创建路由之后),此处lb代表负载均衡loadBalance
+          uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/findAll/** #断言，路径相匹配的进行路由
+            - After=2023-02-09T11:58:54.639+08:00[Asia/Shanghai] #什么时间之后可以访问
+            #- Cookie=chocolate, ch.p # 带有名为chocolate并且值为 ch.p的cookie才能访问
+            #- Method=GET,POST #GET和POST请求可以访问
+            #- Query=name,sss #请求带参数name并且值为sss时候可以访问
+            #- RemoteAddr=192.168.50.83 #请求域名/ip
         - id: payment_route2 #路由的ID，没有固定的规则但要求唯一，建议配合服务名称
           #uri: http://localhost:8001 #匹配后提供服务的路由地址
-          uri: lb://cloud-payment-service #匹配后提供服务的路由地址(开启从注册中心动态创建路由之后)
+          #匹配后提供服务的路由地址(开启从注册中心动态创建路由之后),此处lb代表负载均衡loadBalance
+          uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/findById/** #断言，路径相匹配的进行路由
+          filters:
+            - AddRequestParameter=name,xxx #过滤，需要匹配参数name值为xxx
 
 eureka:
   client:
