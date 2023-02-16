@@ -1,0 +1,18 @@
+server:
+  port: 3355
+spring:
+  application:
+    name: config-client
+  cloud:
+    #config客户端配置
+    config:
+      label: master #分支名称
+      name: config #配置文件名称
+      profile: test #读取文件后缀名称
+      uri: http://localhost:3344 #配置中心地址
+      #上面4个结合就是 http://localhost:3344/master/config-test.yaml
+#服务注册中心Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka #默认访问的注册中心服务地址
