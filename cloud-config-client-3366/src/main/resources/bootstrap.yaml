@@ -11,6 +11,12 @@ spring:
       profile: test #读取文件后缀名称
       uri: http://localhost:3344 #配置中心地址
       #上面4个结合就是 http://localhost:3344/master/config-test.yaml
+  #rabbitmq相关配置 15672是Web管理界面的端口  5672是MQ访问的端口
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 #服务注册中心Eureka
 eureka:
   client:
