@@ -19,22 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @date create on 2023/2/21
  */
 @Controller
-@EnableBinding(Sink.class)
+@EnableBinding(Sink.class)//绑定消息的接收管道
 public class ReceiveMessageListenerController {
 
     @Value("${server.port}")
     private String serverPort;
 
-    @StreamListener(Sink.INPUT)
+    @StreamListener(Sink.INPUT)//监听消息的接收管道
     public void input(Message<String> message){
+        //获取并且打印推送的消息
         System.out.println("serverPort:" + serverPort + "消费者1号--->收到消息：" + message.getPayload());
-    }
-
-    @ResponseBody
-    @GetMapping("/aa")
-    public String xx(){
-        System.out.println(serverPort);
-        return serverPort;
     }
 
 }
