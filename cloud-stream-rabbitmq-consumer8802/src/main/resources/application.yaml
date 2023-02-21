@@ -1,8 +1,8 @@
 server:
-  port: 8801
+  port: 8802
 spring:
   application:
-    name: cloud-stream-provider
+    name: cloud-stream-consumer
   rabbitmq:
     host: localhost
     port: 5672
@@ -21,8 +21,8 @@ spring:
 #                username: guest
 #                password: guest
       bindings: #服务的整合处理
-        output: #这个名字是一个通道的名称 (输出-消息的生产者)
-          destination: studyExchange #表示要使用的Exchange名称定义(约定好的通道名称)
+        input: #这个名字是一个通道的名称 (输出-消息的生产者)
+          destination: studyExchange  #表示要使用的Exchange名称定义(约定好的通道名称)
           content-type: application/json #设置消息类型，本次为json，文本则设置"text/plain"
           binder: defaultRabbit #设置要绑定的消息服务的具体设置
 eureka:
@@ -32,5 +32,5 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 2 #设置心跳的间隔时间(默认是30秒)
     lease-expiration-duration-in-seconds: 5 #设置最大等待时间(默认是90秒)
-    instance-id: send-8801.com # 在信息列表时显示主机名称
+    instance-id: receive-8802.com # 在信息列表时显示主机名称
     prefer-ip-address: true #访问的路径变为IP地址
