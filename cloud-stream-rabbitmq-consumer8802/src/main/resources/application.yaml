@@ -25,6 +25,7 @@ spring:
           destination: studyExchange  #表示要使用的Exchange名称定义(约定好的通道名称)
           content-type: application/json #设置消息类型，本次为json，文本则设置"text/plain"
           binder: defaultRabbit #设置要绑定的消息服务的具体设置
+          group: groupA #分组名称(解决消息重复消费问题-微服务的分组相同则不会出现重复消费-并且在自定义分组之后，将会支持消息持久化)
 eureka:
   client:
     service-url:
