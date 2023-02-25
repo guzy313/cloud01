@@ -101,4 +101,9 @@ public class PaymentController {
         return serverPort + "延迟执行方法-测试feign调用超时情况";
     }
 
+    @GetMapping("/payment/getZipkinStr")
+    public String getZipkinStr(){
+        return "serverPort:" + serverPort + "  here is zipkin ";
+    }
+
 }

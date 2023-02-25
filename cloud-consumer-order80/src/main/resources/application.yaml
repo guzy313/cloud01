@@ -11,6 +11,13 @@ spring:
       url: jdbc:mysql://localhost:3306/db01?useUnicode=true&character=UTF-8&serverTimezone=UTC&useSSL=false
       username: root
       password: syq
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    #采样器
+    sampler:
+      # (追踪请求的)采样值介于 0 到 1 之间，1则表示全部采集
+      probability: 1
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.my.springcloud.entity
