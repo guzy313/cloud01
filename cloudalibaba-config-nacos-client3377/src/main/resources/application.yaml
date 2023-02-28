@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    #指定环境 (是组成nacos的dataId的一部分)
+#    active: test #测试环境
+    active: dev #开发环境
