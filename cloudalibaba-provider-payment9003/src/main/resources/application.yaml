@@ -1,0 +1,19 @@
+server:
+  port: 9003
+spring:
+  application:
+    name: cloudalibaba-provider-payment
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.50.83:3333
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+#暴露 actuator 监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,0 +1,22 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: cloudalibaba-provider-payment
+  cloud:
+    #服务注册发现
+    nacos:
+      discovery:
+        server-addr: 192.168.50.83:3333
+    #熔断限流
+    sentinel:
+      transport:
+        #sentinel服务端（web服务）
+        dashboard: 192.168.50.83:8080
+        port: 8719
+management:
+  endpoints:
+    web:
+      exposure:
+        #开放actual所有监控端点
+        include: '*'

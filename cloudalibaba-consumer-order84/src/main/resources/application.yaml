@@ -1,0 +1,24 @@
+server:
+  port: 84
+spring:
+  application:
+    name: cloudalibaba-consumer-order
+  cloud:
+    nacos:
+      discovery:
+        #nacos服务注册发现中心
+        server-addr: 192.168.50.83:3333
+    sentinel:
+      transport:
+        port: 8719
+        #sentinel 熔断限流监控服务（web平台）
+        dashboard: 192.168.50.83:8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+feign:
+  #sentinel 整合 openfeign
+  sentinel:
+    enabled: true
