@@ -14,6 +14,15 @@ spring:
         dashboard: localhost:8080
         #默认8719端口，如果占用会自动从8719 开始依次 +1 扫描,直到找到未被占用端口
         port: 8719
+      # sentinel dashboard限流配置通过nacos进行持久化的配置,在nacos页面配置(nacos必须已经做好mysql数据库更改[nacos本身的持久化])
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 192.168.50.83:3333
+            dataId: cloudalibaba-sentinel-service #就是本服务的application.name
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
 #暴露 actuator 监控端点
 management:
   endpoints:
