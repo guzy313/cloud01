@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.springcloud.dao.AccountDao">
+
+    <resultMap id="BaseResultMap" type="com.my.springcloud.domain.Account" >
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="total" property="total" jdbcType="INTEGER"/>
+        <result column="used" property="used" jdbcType="INTEGER"/>
+        <result column="residue" property="residue" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from t_account
+    </select>
+
+    <insert id="insert" >
+        insert into t_account (id,user_id,total,used,residue)
+        value (null,#{userId},#{total},#{used},#{residue})
+    </insert>
+
+    <update id="decrease" >
+        update t_account set used = used + #{money},residue = residue - #{money}
+        where user_id = #{userId} ;
+    </update>
+
+</mapper>

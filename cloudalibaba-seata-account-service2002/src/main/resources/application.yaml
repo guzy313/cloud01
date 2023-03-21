@@ -1,8 +1,8 @@
 server:
-  port: 2001
+  port: 2002
 spring:
   application:
-    name: cloudalibaba-seata-order-service
+    name: cloudalibaba-seata-account-service
   cloud:
     nacos:
       discovery:
@@ -18,7 +18,7 @@ spring:
   #数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/seata_order?useUnicode=true&character=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/seata_account?useUnicode=true&character=UTF-8&serverTimezone=UTC
     username: root
     password: syq
     type: com.alibaba.druid.pool.DruidDataSource
