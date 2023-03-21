@@ -33,12 +33,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findByMap(Map<String,Object> columns){
-        return orderDao.selectByMap(columns);
+        return orderDao.findAll();
     }
 
     @Override
     public void create(Order order){
-        order.setStatus(0);
         System.out.println("订单开始创建..");
 
         orderDao.insert(order);
@@ -47,6 +46,8 @@ public class OrderServiceImpl implements OrderService {
         System.out.println("----->开始调用库存微服务..");
         accountService.decrease(order.getUserId(),order.getMoney());
         System.out.println("----->开始调用账户微服务..");
+        orderDao.updateStatus(order.getUserId(),0);
+        System.out.println("----->开始修改订单状态..");
     }
 
     @Override

@@ -38,7 +38,7 @@ public class OrderController {
     @PostMapping("/order/create")
     public CommonResult create(@RequestParam Order order){
         orderService.create(order);
-        return new CommonResult(200,"创建成功");
+        return new CommonResult(200,"订单创建成功");
     }
 
     /**
@@ -50,7 +50,7 @@ public class OrderController {
     @PostMapping("/order/pay")
     public CommonResult pay(@RequestParam("userId")Long userId){
         orderService.update(userId);
-        return new CommonResult(200,"支付成功");
+        return new CommonResult(200,"订单支付成功");
     }
 
 }
