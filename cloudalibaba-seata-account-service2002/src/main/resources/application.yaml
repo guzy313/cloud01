@@ -14,7 +14,7 @@ spring:
           dashboard: 192.168.50.83:8080
     alibaba:
       seata:
-        tx-service-group: my_tx_group
+        tx-service-group: my_test_tx_group
   #数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

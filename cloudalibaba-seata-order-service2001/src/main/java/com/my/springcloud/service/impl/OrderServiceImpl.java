@@ -48,6 +48,8 @@ public class OrderServiceImpl implements OrderService {
         System.out.println("----->开始调用账户微服务..");
         orderDao.updateStatus(order.getUserId(),0);
         System.out.println("----->开始修改订单状态..");
+
+        System.out.println("下订单成功！");
     }
 
     @Override
