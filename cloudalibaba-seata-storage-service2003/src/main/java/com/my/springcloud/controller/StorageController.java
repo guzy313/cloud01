@@ -3,11 +3,9 @@ package com.my.springcloud.controller;
 import com.my.springcloud.domain.Storage;
 import com.my.springcloud.entity.CommonResult;
 import com.my.springcloud.service.StorageService;
+import io.netty.util.internal.StringUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
  * @Description
  * @date create on 2023/3/22
  */
-@Controller
+@RestController
 public class StorageController {
     @Resource
     private StorageService storageService;
@@ -28,7 +26,6 @@ public class StorageController {
      * @param productId
      * @return
      */
-    @ResponseBody
     @GetMapping("/storage/findByProductId")
     public CommonResult findByProductId(@RequestParam(value = "productId",required = false)Long productId){
         List<Storage> result = storageService.findByProductId(productId);
@@ -39,16 +36,13 @@ public class StorageController {
 
     /**
      * 新建商品
-     * @param productId
-     * @param count
      * @return
      */
-    @PostMapping(value = "/storage/create")
-    public CommonResult create(@RequestParam(value = "productId",required = true)Long productId,
-                                 @RequestParam(value = "total",required = true)Integer total){
-        storageService.create(productId,total);
+    @GetMapping(value = "/storage/create")
+    public CommonResult create(){
+        Storage storage = storageService.create();
         System.out.println("新增商品成功!");
-        return new CommonResult(200,"新增商品成功");
+        return new CommonResult(200,"新增商品成功",storage);
     }
 
 
@@ -61,7 +55,11 @@ public class StorageController {
      */
     @PostMapping(value = "/storage/decrease")
     public CommonResult decrease(@RequestParam(value = "productId",required = true)Long productId,
-                                 @RequestParam(value = "count",required = true)Integer count){
+                                 @RequestParam(value = "count",required = true)Integer count,
+                                 @RequestParam(value = "e",required = false)String e){
+        if(!StringUtil.isNullOrEmpty(e) && "1".equals(e)){
+            throw new RuntimeException("测试库存事务回滚异常");
+        }
         storageService.decrease(productId,count);
         System.out.println("消耗商品库存成功!");
         return new CommonResult(200,"消耗商品库存成功");

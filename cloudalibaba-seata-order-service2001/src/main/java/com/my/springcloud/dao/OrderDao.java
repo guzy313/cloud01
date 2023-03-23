@@ -20,6 +20,10 @@ public interface OrderDao {
 
     List<Order> findAll();
 
+    List<Order> findByUserId(@Param("userId")Long userId);
+
+    Long findMaxId();
+
     void insert(Order order);
 
     void updateStatus(@Param("userId")Long userId,@Param("status")Integer status);

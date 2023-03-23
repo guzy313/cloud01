@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +21,10 @@ import java.util.Map;
 @Service
 public interface OrderService {
 
-    public List<Order> findByMap(Map<String,Object> columns);
+     List<Order> findByMap(Map<String,Object> columns);
 
-    public void create(Order order);
+     Order create(Long userId,Long productId,Integer count, BigDecimal money);
 
-    public void update(Long userId);
+     void update(Long userId,String e);
 
 }

@@ -19,6 +19,7 @@ public interface StorageService {
     //减商品库存
     @PostMapping(value = "/storage/decrease")
     CommonResult decrease(@RequestParam("productId")Long productId,
-                          @RequestParam("count")Integer count);
+                          @RequestParam("count")Integer count,
+                          @RequestParam(value = "e",required = false)String e);
 
 }

@@ -25,14 +25,30 @@ public class StorageServiceImpl implements StorageService {
         return storageDao.findByProductId(productId);
     }
 
-    @Override
-    public void create(Long productId, Integer total) {
+    public Storage create() {
+        //生成总数
+        Integer total = 10000;
         Storage storage = new Storage();
-        storage.setProductId(productId);
+        storage.setId(storageDao.findMaxId() + 1);//查询最大ID实现自增[数据库表主键自增策略会导致seata事务回滚锁表]
+        //查询商品ID-生成ID使用(自增)
+        List<Storage> list = storageDao.findByProductId(null);
+        if(list.size() > 0){
+            Long maxProductId = 0L;
+            for (Storage a:list) {
+                if(maxProductId < a.getProductId()){
+                    maxProductId = a.getProductId();
+                }
+            }
+            maxProductId = maxProductId + 1;
+            storage.setProductId(maxProductId);
+        }else{
+            storage.setProductId(1L);
+        }
         storage.setTotal(total);
         storage.setUsed(0);
         storage.setResidue(total);
         storageDao.insert(storage);
+        return storage;
     }
 
     @Override

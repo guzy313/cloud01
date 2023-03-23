@@ -17,7 +17,7 @@ public interface AccountService {
 
     List<Account> findAll();
 
-    public void create(Account account);
+    Account create();
 
     void decrease(Long userId,BigDecimal money);
 

@@ -18,14 +18,22 @@
         select * from t_order
     </select>
 
+    <select id="findByUserId" resultMap="BaseResultMap">
+        select * from t_order where user_id = #{userId}
+    </select>
+
+    <select id="findMaxId" resultType="java.lang.Long">
+        select ifnull(max(id),0)id from t_order
+    </select>
+
     <insert id="insert" >
         insert into t_order (id,user_id,product_id,count,money,status)
-        value (null,#{userId},#{productId},#{count},#{money},#{status})
+        value (#{id},#{userId},#{productId},#{count},#{money},#{status})
     </insert>
 
     <update id="updateStatus" >
-        update t_order set status = 1
-        where user_id = #{userId} and status = #{status};
+        update t_order set status = #{status}
+        where user_id = #{userId} ;
     </update>
 
 </mapper>

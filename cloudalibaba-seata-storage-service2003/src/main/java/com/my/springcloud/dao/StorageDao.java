@@ -19,6 +19,8 @@ public interface StorageDao {
 
     List<Storage> findByProductId(@Param("productId") Long productId);
 
+    Long findMaxId();
+
     void insert(Storage storage);
 
     void updateCount(@Param("productId") Long productId, @Param("count") Integer count);

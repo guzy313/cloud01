@@ -15,7 +15,7 @@ public interface StorageService {
 
     List<Storage> findByProductId(@Param("productId") Long productId);
 
-    void create(Long productId,Integer total);
+    Storage create();
 
     void decrease(Long productId,Integer count);
 

@@ -26,8 +26,29 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void create(Account account) {
+    public Account create() {
+        Account account = new Account();
+        account.setId(accountDao.findMaxId() + 1);
+        int total = 10000;
+        account.setTotal(total);
+        account.setResidue(total);
+        account.setUsed(0);
+        //查询用户ID-生成ID使用(自增)
+        List<Account> list = accountDao.findAll();
+        if(list.size() > 0){
+            Long maxUserId = 0L;
+            for (Account a:list) {
+                if(maxUserId < a.getUserId()){
+                    maxUserId = a.getUserId();
+                }
+            }
+            maxUserId = maxUserId + 1;
+            account.setUserId(maxUserId);
+        }else{
+            account.setUserId(1L);
+        }
         accountDao.insert(account);
+        return account;
     }
 
     @Override

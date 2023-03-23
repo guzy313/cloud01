@@ -17,9 +17,13 @@
         select * from t_account
     </select>
 
+    <select id="findMaxId" resultType="java.lang.Long">
+        select ifnull(max(id),0)id from t_account
+    </select>
+
     <insert id="insert" >
         insert into t_account (id,user_id,total,used,residue)
-        value (null,#{userId},#{total},#{used},#{residue})
+        value (#{id},#{userId},#{total},#{used},#{residue})
     </insert>
 
     <update id="decrease" >

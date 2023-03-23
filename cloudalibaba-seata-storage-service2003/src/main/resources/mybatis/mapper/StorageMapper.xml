@@ -22,13 +22,17 @@
         </where>
     </select>
 
+    <select id="findMaxId" resultType="java.lang.Long">
+        select ifnull(max(id),0)id from t_storage
+    </select>
+
     <insert id="insert" >
-        insert into t_storage (id,user_id,product_id,total,used,residue)
-        value (null,#{userId},#{productId},#{total},#{used},#{residue})
+        insert into t_storage (id,product_id,total,used,residue)
+        value (#{id},#{productId},#{total},#{used},#{residue})
     </insert>
 
     <update id="updateCount" >
-        update t_storage set used = used + #{count},residue = total - used -#{count}
+        update t_storage set used = used + #{count},residue = residue - #{count}
         where product_id = #{productId} ;
     </update>
 

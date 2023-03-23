@@ -22,6 +22,10 @@ public interface AccountDao {
 
     List<Account> findAll();
 
+    List<Account> findByUserId(@Param("userId")Long userId);
+
+    Long findMaxId();
+
     void insert(Account account);
 
     void decrease(@Param("userId") Long userId, @Param("money")BigDecimal money);
